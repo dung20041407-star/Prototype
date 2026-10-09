@@ -1941,6 +1941,82 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 279045652}
   m_CullTransparentMesh: 1
+--- !u!1 &321794234
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 321794235}
+  - component: {fileID: 321794236}
+  m_Layer: 0
+  m_Name: SaveSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &321794235
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321794234}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &321794236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321794234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5cb312309e351142bd7dbd925e189de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelSystem: {fileID: 1586310604}
+  playerStats: {fileID: 378460071}
+  basicMaterialInventory: {fileID: 1697992594}
+  backpackInventory: {fileID: 1283011497}
+  equipmentManager: {fileID: 926357404}
+  equipmentSOs:
+  - {fileID: 11400000, guid: cabca563b12fe3f41ba055356afab578, type: 2}
+  - {fileID: 11400000, guid: 79c38e2a36f969544a95328f9d11b042, type: 2}
+  - {fileID: 11400000, guid: 34bbdd3f7608e6e4d9d4976ebea8b703, type: 2}
+  - {fileID: 11400000, guid: 104c45e447d49ac4d9c9caddcc50dac3, type: 2}
+  - {fileID: 11400000, guid: 3d394ba5ac825014fb429374ee2b9caf, type: 2}
+  - {fileID: 11400000, guid: d4ea7872ae0f63f42b0851e31c079aec, type: 2}
+  - {fileID: 11400000, guid: 07ff8abeff60e20449442d99b90d5161, type: 2}
+  - {fileID: 11400000, guid: 439e9f455145c394bae34fa425b6bdd8, type: 2}
+  - {fileID: 11400000, guid: 07ed903db60af274489900e5781ac19d, type: 2}
+  - {fileID: 11400000, guid: f9998918ff2d89143bb5f65d1a75a791, type: 2}
+  - {fileID: 11400000, guid: 0d7c3788ca256fb448a85867cd3a81bd, type: 2}
+  - {fileID: 11400000, guid: eaabe77d31f3d68488ef1eda581dea7d, type: 2}
+  - {fileID: 11400000, guid: 1f836534f3963394488a9c09d9cb909d, type: 2}
+  - {fileID: 11400000, guid: 620ffac401c2ef6469e338e37e0d842a, type: 2}
+  - {fileID: 11400000, guid: e18ebc6f4fed61f49a24e6e8c6a38e47, type: 2}
+  - {fileID: 11400000, guid: 1499288805be6e646b6e54d0c637ea97, type: 2}
+  - {fileID: 11400000, guid: 336dd1892a6abe44c99ef1cda7203de0, type: 2}
+  - {fileID: 11400000, guid: e2b650273fd1cd243b994df7cb61b1aa, type: 2}
+  advancedMaterialSOs:
+  - {fileID: 11400000, guid: 809d26f696365ea4aa0c6e097d344c1a, type: 2}
+  - {fileID: 11400000, guid: 142d898de1228774491e8ab6f25e39da, type: 2}
+  - {fileID: 11400000, guid: cf911d03d78f70543becc4cf2de8cff2, type: 2}
+  - {fileID: 11400000, guid: c883e2b5427b7f244acb9d5939b2d8d9, type: 2}
+  - {fileID: 11400000, guid: fcccbb0082a076641885058b3c83947d, type: 2}
+  healingPotionSOs:
+  - {fileID: 11400000, guid: f017da6edd0c66d439905be042ec75b9, type: 2}
 --- !u!1 &349447613
 GameObject:
   m_ObjectHideFlags: 0
@@ -14310,3 +14386,4 @@ SceneRoots:
   - {fileID: 2102891721}
   - {fileID: 909619942}
   - {fileID: 1846275491}
+  - {fileID: 321794235}

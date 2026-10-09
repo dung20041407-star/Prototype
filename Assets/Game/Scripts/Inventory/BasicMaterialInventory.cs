@@ -5,15 +5,16 @@ using UnityEngine.InputSystem;
 
 public class BasicMaterialInventory : MonoBehaviour
 {
-    [Header("use arrrow key to add materials respectively")]
+    [Header("Use arrow keys to add/remove materials")]
     [SerializeField] private bool addOrRemove = false;
-    [Header("add = true, remove = false")]
+
     [Header("Add Amount")]
     [SerializeField] private int addAmount = 1;
 
     public event Action OnInventoryChanged;
 
-    public Dictionary<BasicMaterialType, int> materials;
+    private Dictionary<BasicMaterialType, int> materials;
+
     private void Awake()
     {
         materials = new Dictionary<BasicMaterialType, int>();
@@ -22,16 +23,20 @@ public class BasicMaterialInventory : MonoBehaviour
         materials.Add(BasicMaterialType.SoftTissue, 0);
         materials.Add(BasicMaterialType.Hemolymph, 0);
     }
+
     private void Update()
     {
         if (addOrRemove)
         {
             if (Keyboard.current.upArrowKey.wasPressedThisFrame)
                 AddMaterial(BasicMaterialType.ChitinFragment, addAmount);
+
             if (Keyboard.current.rightArrowKey.wasPressedThisFrame)
                 AddMaterial(BasicMaterialType.SoftTissue, addAmount);
+
             if (Keyboard.current.downArrowKey.wasPressedThisFrame)
                 AddMaterial(BasicMaterialType.ProteinFiber, addAmount);
+
             if (Keyboard.current.leftArrowKey.wasPressedThisFrame)
                 AddMaterial(BasicMaterialType.Hemolymph, addAmount);
         }
@@ -44,6 +49,7 @@ public class BasicMaterialInventory : MonoBehaviour
                 else
                     Debug.Log("Not Enough Material");
             }
+
             if (Keyboard.current.rightArrowKey.wasPressedThisFrame)
             {
                 if (SpendMaterial(BasicMaterialType.SoftTissue, addAmount))
@@ -51,6 +57,7 @@ public class BasicMaterialInventory : MonoBehaviour
                 else
                     Debug.Log("Not Enough Material");
             }
+
             if (Keyboard.current.downArrowKey.wasPressedThisFrame)
             {
                 if (SpendMaterial(BasicMaterialType.ProteinFiber, addAmount))
@@ -58,6 +65,7 @@ public class BasicMaterialInventory : MonoBehaviour
                 else
                     Debug.Log("Not Enough Material");
             }
+
             if (Keyboard.current.leftArrowKey.wasPressedThisFrame)
             {
                 if (SpendMaterial(BasicMaterialType.Hemolymph, addAmount))
@@ -67,11 +75,13 @@ public class BasicMaterialInventory : MonoBehaviour
             }
         }
     }
+
     public void AddMaterial(BasicMaterialType materialType, int amount)
     {
         materials[materialType] += amount;
         OnInventoryChanged?.Invoke();
     }
+
     public bool SpendMaterial(BasicMaterialType materialType, int amount)
     {
         if (materials[materialType] < amount)
@@ -82,12 +92,15 @@ public class BasicMaterialInventory : MonoBehaviour
 
         return true;
     }
-    public void LogAllMaterials()
+
+    public int GetMaterialAmount(BasicMaterialType materialType)
     {
-        Debug.Log("=== INVENTORY CONTENTS ===");
-        foreach (KeyValuePair<BasicMaterialType, int> pair in materials)
-        {
-            Debug.Log($"{pair.Key}: {pair.Value}");
-        }
+        return materials[materialType];
+    }
+
+    public void SetMaterialAmount(BasicMaterialType materialType, int amount)
+    {
+        materials[materialType] = amount;
+        OnInventoryChanged?.Invoke();
     }
 }

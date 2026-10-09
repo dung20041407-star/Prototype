@@ -22,6 +22,17 @@ public class PlayerStats : MonoBehaviour
 
     public int currentHp;
 
+    public int BaseHp => baseHp;
+    public int BaseHpDamage => baseHpDamage;
+    public int BaseStabilityDamage => baseStabilityDamage;
+    public int BaseDefense => baseDefense;
+    public float BaseAttackSpeed => baseAttackSpeed;
+    public float BaseMoveSpeed => baseMoveSpeed;
+
+    public int CurrentHp => currentHp;
+    public float CurrentHpRatio =>
+    maxHp > 0 ? (float)currentHp / maxHp : 0f;
+
     public event Action OnHPChanged;
 
     [Header("Testing Apply Damage(< or > to apply)")]
@@ -54,14 +65,19 @@ public class PlayerStats : MonoBehaviour
             hpPercent = (float)currentHp / maxHp;
         }
 
+        RecalculateStats(equipments);
+
+        currentHp = Mathf.RoundToInt(maxHp * hpPercent);
+    }
+
+    void RecalculateStats(List<EquipmentItem> equipments)
+    {
         ResetStatsToBaseStats();
 
         foreach (EquipmentItem item in equipments)
         {
             ApplyEquipment(item);
         }
-
-        currentHp = Mathf.RoundToInt(maxHp * hpPercent);
     }
     void ResetStatsToBaseStats()
     {
@@ -127,4 +143,23 @@ public class PlayerStats : MonoBehaviour
         OnHPChanged?.Invoke();
     }
 
+    public void LoadFromSave(PlayerSaveData data)
+    {
+        baseHp = data.baseHp;
+        baseHpDamage = data.baseHpDamage;
+        baseStabilityDamage = data.baseStabilityDamage;
+        baseDefense = data.baseDefense;
+        baseAttackSpeed = data.baseAttackSpeed;
+        baseMoveSpeed = data.baseMoveSpeed;
+    }
+
+    public void RestoreHpRatio(float hpRatio)
+    {
+        RecalculateStats(equipmentManager.GetEquippedItems());
+
+        currentHp = Mathf.RoundToInt(maxHp * hpRatio);
+        currentHp = Mathf.Clamp(currentHp, 0, maxHp);
+
+        OnHPChanged?.Invoke();
+    }
 }

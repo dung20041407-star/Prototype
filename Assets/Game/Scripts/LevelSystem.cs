@@ -16,6 +16,10 @@ public class LevelSystem : MonoBehaviour
     [SerializeField] private int damagePerLevel = 1;
     [SerializeField] private bool toggleLevelUpHpOrDamage = false;
 
+    public int Level => level;
+    public int CurrentExp => currentExp;
+    public int ExpToNextLevel => expToNextLevel;
+
     // Update is called once per frame
     void Update()
     {
@@ -48,5 +52,12 @@ public class LevelSystem : MonoBehaviour
         expToNextLevel = Mathf.RoundToInt(expToNextLevel * expMultiplier);
 
         Debug.Log($"Level up! Current level: {level}");
+    }
+
+    public void LoadFromSave(PlayerSaveData data)
+    {
+        level = data.level;
+        currentExp = data.currentExp;
+        expToNextLevel = data.expToNextLevel;
     }
 }

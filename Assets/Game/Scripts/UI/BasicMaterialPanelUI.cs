@@ -13,8 +13,8 @@ public class BasicMaterialPanelUI : MonoBehaviour
     [SerializeField] private BasicMaterialUI softTissueUI;
     [SerializeField] private BasicMaterialUI proteinFiberUI;
     [SerializeField] private BasicMaterialUI hemolymphUI;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    private void Start()
     {
         inventory.OnInventoryChanged += Refresh;
         Refresh();
@@ -22,12 +22,24 @@ public class BasicMaterialPanelUI : MonoBehaviour
 
     public void Refresh()
     {
-        chitinFragmentUI.SetItem(chitinFragment._icon, inventory.materials[BasicMaterialType.ChitinFragment]);
+        chitinFragmentUI.SetItem(
+            chitinFragment._icon,
+            inventory.GetMaterialAmount(BasicMaterialType.ChitinFragment)
+        );
 
-        softTissueUI.SetItem(softTissue._icon, inventory.materials[BasicMaterialType.SoftTissue]);
+        softTissueUI.SetItem(
+            softTissue._icon,
+            inventory.GetMaterialAmount(BasicMaterialType.SoftTissue)
+        );
 
-        proteinFiberUI.SetItem(proteinFiber._icon, inventory.materials[BasicMaterialType.ProteinFiber]);
+        proteinFiberUI.SetItem(
+            proteinFiber._icon,
+            inventory.GetMaterialAmount(BasicMaterialType.ProteinFiber)
+        );
 
-        hemolymphUI.SetItem(hemolymph._icon, inventory.materials[BasicMaterialType.Hemolymph]);
+        hemolymphUI.SetItem(
+            hemolymph._icon,
+            inventory.GetMaterialAmount(BasicMaterialType.Hemolymph)
+        );
     }
 }

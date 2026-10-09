@@ -10,14 +10,6 @@ public class CraftingSystem : MonoBehaviour
     [SerializeField] private EquipmentSO currentRecipe;
     [SerializeField] private RepairStorage repairStorage;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Keyboard.current.rKey.wasPressedThisFrame)
-        {
-            RepairEquipmentFromStorage();
-        }
-    }
     void CraftEquipment(EquipmentSO data)
     {
         if (!HasEnoughMaterials(data._cost))
@@ -39,12 +31,19 @@ public class CraftingSystem : MonoBehaviour
     }
     bool HasEnoughMaterials(MaterialCost cost)
     {
-        return basicMaterialInventory.materials[BasicMaterialType.ChitinFragment] >= cost.chitinCost
-            && basicMaterialInventory.materials[BasicMaterialType.ProteinFiber] >= cost.proteinFiberCost
-            && basicMaterialInventory.materials[BasicMaterialType.SoftTissue] >= cost.softTissueCost
-            && basicMaterialInventory.materials[BasicMaterialType.Hemolymph] >= cost.hemolymphCost;
+        return basicMaterialInventory.GetMaterialAmount(
+                   BasicMaterialType.ChitinFragment) >= cost.chitinCost
+
+            && basicMaterialInventory.GetMaterialAmount(
+                   BasicMaterialType.ProteinFiber) >= cost.proteinFiberCost
+
+            && basicMaterialInventory.GetMaterialAmount(
+                   BasicMaterialType.SoftTissue) >= cost.softTissueCost
+
+            && basicMaterialInventory.GetMaterialAmount(
+                   BasicMaterialType.Hemolymph) >= cost.hemolymphCost;
     }
-    
+
     public void RepairEquipmentFromStorage()
     {
         EquipmentItem equipmentItem = repairStorage.currentItem;

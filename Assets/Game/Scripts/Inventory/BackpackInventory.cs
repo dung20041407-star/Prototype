@@ -11,8 +11,6 @@ public class BackpackInventory : MonoBehaviour
     [SerializeField] private AdvancedMaterialSO testMaterial;
     [SerializeField] private int slotIndex;
 
-    [Header("Test Controls")]
-    [Tooltip("Press A to add item.\nPress S to create equipment(need materials).\nPress R to log inventory.\nTrue = Add Advanced Material.")]
     [SerializeField] public int maxSlot = 10;
     public event Action OnInventoryChanged;
 
@@ -238,6 +236,12 @@ public class BackpackInventory : MonoBehaviour
 
         return items[slotIndex];
     }
+
+    public IReadOnlyList<InventoryItem> GetItems()
+    {
+        return items;
+    }
+
     public bool IsFull()
     {
         return items.Count >= maxSlot;
@@ -245,6 +249,11 @@ public class BackpackInventory : MonoBehaviour
 
     public void NotifyInventoryChanged()
     {
+        OnInventoryChanged?.Invoke();
+    }
+    public void ClearItems()
+    {
+        items.Clear();
         OnInventoryChanged?.Invoke();
     }
 }
