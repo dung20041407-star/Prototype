@@ -8,6 +8,11 @@ public class HomeSaveData
     public BasicMaterialSaveData basicMaterialSaveData;
     public BackpackSaveData backpackSaveData;
     public EquipmentManagerSaveData equipmentManagerSaveData;
+    public AdvancedMaterialInventorySaveData advancedMaterialInventorySaveData;
+    public EquipmentInventorySaveData equipmentInventorySaveData;
+    public RepairStorageSaveData repairStorageSaveData;
+    public HealingPotionStorageSaveData healingPotionStorageSaveData;
+    public DisassemblerSaveData disassemblerSaveData;
 }
 
 [Serializable]
@@ -64,4 +69,46 @@ public class EquipmentManagerSaveData
     public int greavesBackpackSlotIndex;
     public int gauntletsBackpackSlotIndex;
     public int bootsBackpackSlotIndex;
+}
+[Serializable]
+public class AdvancedMaterialInventorySaveData
+{
+    public List<AdvancedMaterialItemSaveData> items;
+}
+
+[Serializable]
+public class AdvancedMaterialItemSaveData
+{
+    public int id;
+    public int amount;
+}
+[Serializable]
+public class EquipmentInventorySaveData
+{
+    public List<EquipmentItemSaveData> items;
+}
+
+[Serializable]
+public class EquipmentItemSaveData
+{
+    public int id;
+    public int durability;
+}
+[Serializable]
+public class RepairStorageSaveData
+{
+    public int id;
+    public int durability;
+}
+[Serializable]
+public class HealingPotionStorageSaveData
+{
+    public int amount;
+}
+[Serializable]
+public class DisassemblerSaveData
+{
+    public BackpackItemType itemType;
+    public int id;
+    public int durability;
 }

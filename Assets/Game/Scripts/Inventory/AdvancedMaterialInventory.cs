@@ -12,11 +12,6 @@ public class AdvancedMaterialInventory : ItemInventoryBase
         items = new List<AdvancedMaterialItem>();
     }
 
-    private void Update()
-    {
-        if (Keyboard.current.xKey.wasPressedThisFrame)
-            LogAllItems();
-    }
     public bool Add(AdvancedMaterialItem item)
     {
         if (item == null)
@@ -75,15 +70,7 @@ public class AdvancedMaterialInventory : ItemInventoryBase
 
         return removedItem;
     }
-    public void LogAllItems()
-    {
-        Debug.Log("===ADVANCED MATERIAL INVENTORY CONTENTS ===");
 
-        for (int i = 0; i < items.Count; i++)
-        {
-            Debug.Log($"Slot {i}: {items[i].data.name} x{items[i].amount}");
-        }
-    }
     public bool IsFull()
     {
         return items.Count >= maxSlots;
@@ -96,5 +83,19 @@ public class AdvancedMaterialInventory : ItemInventoryBase
         }
 
         return items[slotIndex];
+    }
+    public int GetItemCount()
+    {
+        return items.Count;
+    }
+    public IReadOnlyList<AdvancedMaterialItem> GetItems()
+    {
+        return items;
+    }
+
+    public void ClearItems()
+    {
+        items.Clear();
+        OnInventoryChanged?.Invoke();
     }
 }

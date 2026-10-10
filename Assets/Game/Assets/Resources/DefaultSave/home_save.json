@@ -1,0 +1,51 @@
+{
+    "playerSaveData": {
+        "level": 1,
+        "currentExp": 0,
+        "expToNextLevel": 1000,
+        "baseHp": 1000,
+        "currentHpRatio": 1.0,
+        "baseHpDamage": 100,
+        "baseStabilityDamage": 100,
+        "baseDefense": 10,
+        "baseAttackSpeed": 1.0,
+        "baseMoveSpeed": 1.0
+    },
+    "basicMaterialSaveData": {
+        "chitinFragment": 0,
+        "proteinFiber": 0,
+        "softTissue": 0,
+        "hemolymph": 0
+    },
+    "backpackSaveData": {
+        "items": []
+    },
+    "equipmentManagerSaveData": {
+        "clubBackpackSlotIndex": -1,
+        "spearBackpackSlotIndex": -1,
+        "armorBackpackSlotIndex": -1,
+        "greavesBackpackSlotIndex": -1,
+        "gauntletsBackpackSlotIndex": -1,
+        "bootsBackpackSlotIndex": -1
+    },
+    "advancedMaterialInventorySaveData": {
+        "items": []
+    },
+    "equipmentInventorySaveData": {
+        "items": []
+    },
+    "repairStorageSaveData": {
+        "id": -1,
+        "durability": 0
+    },
+    "healingPotionStorageSaveData": {
+        "amount": 0
+    },
+    "disassemblerSaveData": {
+        "itemType": 0,
+        "id": -1,
+        "durability": 0
+    }
+
+
+}

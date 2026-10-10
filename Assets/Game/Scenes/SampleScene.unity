@@ -1990,6 +1990,11 @@ MonoBehaviour:
   basicMaterialInventory: {fileID: 1697992594}
   backpackInventory: {fileID: 1283011497}
   equipmentManager: {fileID: 926357404}
+  advancedMaterialInventory: {fileID: 224026183}
+  equipmentInventory: {fileID: 1896379726}
+  repairStorage: {fileID: 2102891725}
+  healingPotionStorage: {fileID: 2102891723}
+  disassembler: {fileID: 2102891724}
   equipmentSOs:
   - {fileID: 11400000, guid: cabca563b12fe3f41ba055356afab578, type: 2}
   - {fileID: 11400000, guid: 79c38e2a36f969544a95328f9d11b042, type: 2}

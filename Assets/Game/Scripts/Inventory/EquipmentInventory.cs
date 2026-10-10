@@ -14,13 +14,6 @@ public class EquipmentInventory : MonoBehaviour
         equipments = new List<EquipmentItem>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Keyboard.current.cKey.wasPressedThisFrame)
-            LogAllItems();
-
-    }
     public void Add(EquipmentItem item)
     {
         if (item == null) return;
@@ -52,15 +45,6 @@ public class EquipmentInventory : MonoBehaviour
 
         return item;
     }
-    public void LogAllItems()
-    {
-        Debug.Log("===EQUIPMENT INVENTORY CONTENTS ===");
-
-        for (int i = 0; i < equipments.Count; i++)
-        {
-            Debug.Log($"Slot {i}: {equipments[i].data.name} : durability {equipments[i].durability}");
-        }
-    }
 
     public bool IsFull()
     {
@@ -74,5 +58,20 @@ public class EquipmentInventory : MonoBehaviour
         }
 
         return equipments[slotIndex];
+    }
+    public void ClearItems()
+    {
+        equipments.Clear();
+        OnInventoryChanged?.Invoke();
+    }
+
+    public IReadOnlyList<EquipmentItem> GetItems()
+    {
+        return equipments;
+    }
+
+    public int GetItemCount()
+    {
+        return equipments.Count;
     }
 }

@@ -83,4 +83,8 @@ public class Disassembler : MonoBehaviour
         currentItem = null;
         OnCurrentItemChanged?.Invoke();
     }
+    public void NotifyCurrentItemChanged()
+    {
+        OnCurrentItemChanged?.Invoke();
+    }
 }

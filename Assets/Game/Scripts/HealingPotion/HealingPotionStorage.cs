@@ -39,5 +39,9 @@ public class HealingPotionStorage : MonoBehaviour
     {
         return healingPotionItem.amount >= 99;
     }
-    
+    public void LoadFromSave(HealingPotionStorageSaveData data)
+    {
+        healingPotionItem.amount = data.amount;
+        OnPotionChanged?.Invoke();
+    }
 }
