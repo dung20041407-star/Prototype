@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerStats : MonoBehaviour
 {
     [SerializeField] EquipmentManager equipmentManager;
+    [SerializeField] SaveSystem saveSystem;
     int baseHp = 1000;
     int baseHpDamage = 100;
     int baseStabilityDamage = 100;
@@ -133,6 +134,8 @@ public class PlayerStats : MonoBehaviour
         currentHp = Mathf.Max(currentHp, 0);
 
         OnHPChanged?.Invoke();
+
+        saveSystem.SaveHome();
     }
     public void Heal(int amount)
     {
@@ -141,6 +144,8 @@ public class PlayerStats : MonoBehaviour
         currentHp = Mathf.Min(currentHp, maxHp);
 
         OnHPChanged?.Invoke();
+
+        saveSystem.SaveHome();
     }
 
     public void LoadFromSave(PlayerSaveData data)

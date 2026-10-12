@@ -9,6 +9,7 @@ public class CraftingSystem : MonoBehaviour
     [SerializeField] private HealingPotionSO healingPotionSO;
     [SerializeField] private EquipmentSO currentRecipe;
     [SerializeField] private RepairStorage repairStorage;
+    [SerializeField] private SaveSystem saveSystem;
 
     void CraftEquipment(EquipmentSO data)
     {
@@ -28,6 +29,7 @@ public class CraftingSystem : MonoBehaviour
         basicMaterialInventory.SpendMaterial(BasicMaterialType.Hemolymph, data._cost.hemolymphCost);
         Debug.Log($"Enough materials. Create 1 {data._itemName}.");
         backpackInventory.CreateEquipment(data);
+        saveSystem.SaveHome();
     }
     bool HasEnoughMaterials(MaterialCost cost)
     {
@@ -111,6 +113,7 @@ public class CraftingSystem : MonoBehaviour
         basicMaterialInventory.SpendMaterial(BasicMaterialType.Hemolymph, data._cost.hemolymphCost);
         healingPotionStorage.AddPotion(1);
         Debug.Log($"Enough materials. Create 1 {data._itemName}. Current in storage: {healingPotionStorage.healingPotionItem.amount}");
+        saveSystem.SaveHome();
     }
     public void CraftHealingPotionButton()
     {

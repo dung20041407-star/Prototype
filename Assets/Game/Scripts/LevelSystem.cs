@@ -4,10 +4,12 @@ using UnityEngine.InputSystem;
 public class LevelSystem : MonoBehaviour
 {
     [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private SaveSystem saveSystem;
 
     [Header("Level")]
     [SerializeField] private int level = 1;
     [SerializeField] private int currentExp;
+    [SerializeField] private int receivedExpAmount = 10000;
 
     [Header("Config")]
     [SerializeField] private int expToNextLevel = 1000;
@@ -26,6 +28,10 @@ public class LevelSystem : MonoBehaviour
         if (Keyboard.current.hKey.wasPressedThisFrame)
         {
             LevelUp();
+        }
+        if (Keyboard.current.jKey.wasPressedThisFrame)
+        {
+            ReceiveExp(receivedExpAmount);
         }
     }
     void LevelUp()
@@ -52,6 +58,8 @@ public class LevelSystem : MonoBehaviour
         expToNextLevel = Mathf.RoundToInt(expToNextLevel * expMultiplier);
 
         Debug.Log($"Level up! Current level: {level}");
+
+        saveSystem.SaveHome();
     }
 
     public void LoadFromSave(PlayerSaveData data)
@@ -59,5 +67,11 @@ public class LevelSystem : MonoBehaviour
         level = data.level;
         currentExp = data.currentExp;
         expToNextLevel = data.expToNextLevel;
+    }
+
+    public void ReceiveExp(int exp)
+    {
+        currentExp += exp;
+        saveSystem.SaveHome();
     }
 }

@@ -6,18 +6,8 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private BackpackInventory backpackInventory;
     [SerializeField] private EquipmentInventory equipmentInventory;
     [SerializeField] private AdvancedMaterialInventory advancedMaterialInventory;
-    [Tooltip("Y button to transfer healing potions")]
-    [SerializeField] private int slotIndex;
     [SerializeField] private HealingPotionStorage healingPotionStorage;
-    private void Update()
-    {
-
-        if (Keyboard.current.yKey.wasPressedThisFrame)
-        {
-            TransferHealingPotionFromHealingPotionStorageToBackpackInventory(healingPotionStorage, backpackInventory);
-        }
-        
-    }
+    [SerializeField] private SaveSystem saveSystem;
     public void TransferEquipmentFromBackpackInventoryToEquipmentInventory(BackpackInventory from, EquipmentInventory to, int slotIndex)
     {
         if (to.IsFull())
@@ -43,6 +33,8 @@ public class InventoryManager : MonoBehaviour
             return;
 
         to.Add(equipment);
+        saveSystem.SaveHome();
+
     }
     public void TransferEquipmentFromEquipmentInventoryToBackpackInventory(EquipmentInventory from,BackpackInventory to,int slotIndex)
     {
@@ -56,6 +48,7 @@ public class InventoryManager : MonoBehaviour
         if (item == null)
             return;
         to.Add(item);
+        saveSystem.SaveHome();
     }
     public void TransferAdvancedMaterialFromBackpackInventoryToAdvancedMaterialInventory(BackpackInventory from, AdvancedMaterialInventory to, int slotIndex)
     {
@@ -80,10 +73,12 @@ public class InventoryManager : MonoBehaviour
             from.Add(advancedMaterial);
             Debug.Log("Transfer failed. Returned material to backpack.");
         }
+        saveSystem.SaveHome();
     }
     public void TransferAdvancedMaterialFromAdvancedMaterialInventoryToBackpackInventory(AdvancedMaterialInventory from, BackpackInventory to, int slotIndex)
     {
         AdvancedMaterialItem item = from.RemoveItem(slotIndex);
+        saveSystem.SaveHome();
 
         if (item == null)
             return;
@@ -104,6 +99,7 @@ public class InventoryManager : MonoBehaviour
         {
             healingPotionStorage.AddPotion(1);
         }
+        saveSystem.SaveHome();
     }
     public void TransferHealingPotionFromBackpackInventoryToHealingPotionStorage(BackpackInventory from,HealingPotionStorage to,int slotIndex)
     {
@@ -116,6 +112,7 @@ public class InventoryManager : MonoBehaviour
         if (from.RemovePotion(slotIndex))
         {
             to.AddPotion(1);
+            saveSystem.SaveHome();
         }
         else
         {

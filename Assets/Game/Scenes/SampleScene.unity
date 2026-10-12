@@ -2283,6 +2283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipmentManager: {fileID: 926357404}
+  saveSystem: {fileID: 321794236}
   maxHp: 0
   hpDamage: 0
   stabilityDamage: 0
@@ -6449,8 +6450,8 @@ MonoBehaviour:
   backpackInventory: {fileID: 1283011497}
   equipmentInventory: {fileID: 1896379726}
   advancedMaterialInventory: {fileID: 224026183}
-  slotIndex: 0
   healingPotionStorage: {fileID: 2102891723}
+  saveSystem: {fileID: 321794236}
 --- !u!1 &896369870
 GameObject:
   m_ObjectHideFlags: 0
@@ -7168,8 +7169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slots: []
   backpackInventory: {fileID: 1283011497}
-  backpackSlotIndex: 0
-  equipmentSlotIndex: 2
+  saveSystem: {fileID: 321794236}
   currentWeaponState: 0
 --- !u!1 &934150585
 GameObject:
@@ -9098,6 +9098,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   testMaterial: {fileID: 11400000, guid: cf911d03d78f70543becc4cf2de8cff2, type: 2}
   slotIndex: 0
+  saveSystem: {fileID: 321794236}
   maxSlot: 20
 --- !u!1 &1298859616
 GameObject:
@@ -10401,8 +10402,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStats: {fileID: 378460071}
+  saveSystem: {fileID: 321794236}
   level: 1
   currentExp: 0
+  receivedExpAmount: 10000
   expToNextLevel: 1000
   hpPerLevel: 10
   damagePerLevel: 1
@@ -11422,7 +11425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da516030bad2dd5409c753518bd159cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addOrRemove: 1
+  saveSystem: {fileID: 321794236}
   addAmount: 1000
 --- !u!1 &1702981414
 GameObject:
@@ -13901,6 +13904,7 @@ MonoBehaviour:
   healingPotionSO: {fileID: 11400000, guid: f017da6edd0c66d439905be042ec75b9, type: 2}
   currentRecipe: {fileID: 0}
   repairStorage: {fileID: 2102891725}
+  saveSystem: {fileID: 321794236}
 --- !u!114 &2102891723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13928,6 +13932,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backpackInventory: {fileID: 1283011497}
   basicMaterialInventory: {fileID: 1697992594}
+  saveSystem: {fileID: 321794236}
 --- !u!114 &2102891725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13941,6 +13946,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backpackInventory: {fileID: 1283011497}
+  saveSystem: {fileID: 321794236}
   slotIndex: 0
 --- !u!1 &2108132178
 GameObject:

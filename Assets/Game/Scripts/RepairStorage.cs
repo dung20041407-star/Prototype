@@ -9,20 +9,9 @@ public class RepairStorage : MonoBehaviour
     public event Action OnCurrentItemChanged;
 
     [SerializeField] private BackpackInventory backpackInventory;
+    [SerializeField] private SaveSystem saveSystem;
 
     [SerializeField] private int slotIndex;
-
-    private void Update()
-    {
-        if (Keyboard.current.eKey.wasPressedThisFrame)
-        {
-            SetItem(slotIndex);
-        }
-        if (Keyboard.current.tKey.wasPressedThisFrame)
-        {
-            TakeOutItem();
-        }
-    }
 
     public bool SetItem(int slotIndex)
     {
@@ -55,6 +44,7 @@ public class RepairStorage : MonoBehaviour
         OnCurrentItemChanged?.Invoke();
 
         Debug.Log($"Moved {equipmentItem.data._itemName} to Repair Storage.");
+        saveSystem.SaveHome();
 
         return true;
     }
@@ -68,6 +58,7 @@ public class RepairStorage : MonoBehaviour
             return;
 
         currentItem = null;
+        saveSystem.SaveHome();
         OnCurrentItemChanged?.Invoke();
     }
 

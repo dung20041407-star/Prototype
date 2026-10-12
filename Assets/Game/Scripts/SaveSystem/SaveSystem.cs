@@ -110,6 +110,7 @@ public class SaveSystem : MonoBehaviour
         string json = JsonUtility.ToJson(data, true);
 
         File.WriteAllText(homeSavePath, json);
+        Debug.Log("SAVE!!!");
     }
 
     public void LoadHome()

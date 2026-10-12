@@ -5,9 +5,8 @@ using UnityEngine.InputSystem;
 
 public class BasicMaterialInventory : MonoBehaviour
 {
-    [Header("Use arrow keys to add/remove materials")]
-    [SerializeField] private bool addOrRemove = false;
-
+    [SerializeField] SaveSystem saveSystem;
+    [Header("Use arrow keys to add materials")]
     [Header("Add Amount")]
     [SerializeField] private int addAmount = 1;
 
@@ -26,8 +25,6 @@ public class BasicMaterialInventory : MonoBehaviour
 
     private void Update()
     {
-        if (addOrRemove)
-        {
             if (Keyboard.current.upArrowKey.wasPressedThisFrame)
                 AddMaterial(BasicMaterialType.ChitinFragment, addAmount);
 
@@ -38,48 +35,14 @@ public class BasicMaterialInventory : MonoBehaviour
                 AddMaterial(BasicMaterialType.ProteinFiber, addAmount);
 
             if (Keyboard.current.leftArrowKey.wasPressedThisFrame)
-                AddMaterial(BasicMaterialType.Hemolymph, addAmount);
-        }
-        else
-        {
-            if (Keyboard.current.upArrowKey.wasPressedThisFrame)
-            {
-                if (SpendMaterial(BasicMaterialType.ChitinFragment, addAmount))
-                    Debug.Log("Spend Success");
-                else
-                    Debug.Log("Not Enough Material");
-            }
-
-            if (Keyboard.current.rightArrowKey.wasPressedThisFrame)
-            {
-                if (SpendMaterial(BasicMaterialType.SoftTissue, addAmount))
-                    Debug.Log("Spend Success");
-                else
-                    Debug.Log("Not Enough Material");
-            }
-
-            if (Keyboard.current.downArrowKey.wasPressedThisFrame)
-            {
-                if (SpendMaterial(BasicMaterialType.ProteinFiber, addAmount))
-                    Debug.Log("Spend Success");
-                else
-                    Debug.Log("Not Enough Material");
-            }
-
-            if (Keyboard.current.leftArrowKey.wasPressedThisFrame)
-            {
-                if (SpendMaterial(BasicMaterialType.Hemolymph, addAmount))
-                    Debug.Log("Spend Success");
-                else
-                    Debug.Log("Not Enough Material");
-            }
-        }
+                AddMaterial(BasicMaterialType.Hemolymph, addAmount);  
     }
 
     public void AddMaterial(BasicMaterialType materialType, int amount)
     {
         materials[materialType] += amount;
         OnInventoryChanged?.Invoke();
+        saveSystem.SaveHome();
     }
 
     public bool SpendMaterial(BasicMaterialType materialType, int amount)
@@ -89,7 +52,6 @@ public class BasicMaterialInventory : MonoBehaviour
 
         materials[materialType] -= amount;
         OnInventoryChanged?.Invoke();
-
         return true;
     }
 

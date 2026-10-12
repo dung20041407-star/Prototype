@@ -12,8 +12,7 @@ public class EquipmentManager : MonoBehaviour
 {
     [SerializeField]private List<EquipmentSlot> slots;
     [SerializeField] private BackpackInventory backpackInventory;
-    [SerializeField] private int backpackSlotIndex;
-    [SerializeField] private int equipmentSlotIndex;
+    [SerializeField] private SaveSystem saveSystem;
     public WeaponHandState currentWeaponState;
 
     public event Action OnEquipmentChanged;
@@ -80,6 +79,7 @@ public class EquipmentManager : MonoBehaviour
         item.isEquipped = true;
         OnEquipmentChanged?.Invoke();
         Debug.Log($"Equipped {item.data.name}");
+        saveSystem.SaveHome();
     }
     public void UnequipItem(int equipmentSlotIndex)
     {
@@ -102,6 +102,7 @@ public class EquipmentManager : MonoBehaviour
 
         slot.equippedItem = null;
         OnEquipmentChanged?.Invoke();
+        saveSystem.SaveHome();
     }
 
     public List<EquipmentItem> GetEquippedItems()

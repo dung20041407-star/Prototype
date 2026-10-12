@@ -10,7 +10,7 @@ public class BackpackInventory : MonoBehaviour
     [Header("Test")]
     [SerializeField] private AdvancedMaterialSO testMaterial;
     [SerializeField] private int slotIndex;
-
+    [SerializeField] private SaveSystem saveSystem;
     [SerializeField] public int maxSlot = 10;
     public event Action OnInventoryChanged;
 
@@ -47,6 +47,7 @@ public class BackpackInventory : MonoBehaviour
                     item.amount++;
                     Debug.Log($"Increased {material.name} to {item.amount}");
                     OnInventoryChanged?.Invoke();
+                    saveSystem.SaveHome();
                     return;
                 }
             }
@@ -61,7 +62,7 @@ public class BackpackInventory : MonoBehaviour
             return;
         }
         items.Add(newItem);
-
+        saveSystem.SaveHome();
         Debug.Log($"Added {material.name} to slot {items.Count - 1}");
         OnInventoryChanged?.Invoke();
     }
@@ -86,6 +87,7 @@ public class BackpackInventory : MonoBehaviour
                     );
 
                     OnInventoryChanged?.Invoke();
+                    saveSystem.SaveHome();
                     return true;
                 }
             }
@@ -100,6 +102,7 @@ public class BackpackInventory : MonoBehaviour
         items.Add(item);
 
         OnInventoryChanged?.Invoke();
+        saveSystem.SaveHome();
         return true;
     }
     public bool AddPotion(HealingPotionItem newPotion)
@@ -123,6 +126,7 @@ public class BackpackInventory : MonoBehaviour
 
                 Debug.Log($"Added {canAdd} Healing Potion. Current: {potion.amount}");
                 OnInventoryChanged?.Invoke();
+                saveSystem.SaveHome();
                 return true;
             }
         }
@@ -138,7 +142,6 @@ public class BackpackInventory : MonoBehaviour
 
         Debug.Log($"Created Healing Potion stack x{newPotion.amount}");
         OnInventoryChanged?.Invoke();
-
         return true;
     }
 
@@ -164,7 +167,7 @@ public class BackpackInventory : MonoBehaviour
             OnInventoryChanged?.Invoke();
 
             Debug.Log($"Removed equipment: {equipment.data.name}");
-
+            saveSystem.SaveHome();
             return equipment;
         }
 
@@ -188,6 +191,7 @@ public class BackpackInventory : MonoBehaviour
                 Debug.Log($"Removed 1 {material.data.name}. Remaining: {material.amount}");
             }
             OnInventoryChanged?.Invoke();
+            saveSystem.SaveHome();
             return removedItem;
         }
         Debug.Log("Remove failed: Unsupported item type.");
@@ -205,6 +209,7 @@ public class BackpackInventory : MonoBehaviour
             if (potion.amount == 0)
                 items.RemoveAt(slotIndex);
             OnInventoryChanged?.Invoke();
+            saveSystem.SaveHome();
             return true;
         }
         return false;
@@ -226,6 +231,7 @@ public class BackpackInventory : MonoBehaviour
                 $"Decreased {equipment.data.name} durability. Current: {equipment.durability}"
             );
         }
+        saveSystem.SaveHome();
     }
     public InventoryItem GetItem(int slotIndex)
     {

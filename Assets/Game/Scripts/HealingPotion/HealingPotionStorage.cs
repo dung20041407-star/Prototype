@@ -13,13 +13,7 @@ public class HealingPotionStorage : MonoBehaviour
     {
         healingPotionItem = new HealingPotionItem(data, 0);
     }
-    private void Update()
-    {
-        if (Keyboard.current.jKey.wasPressedThisFrame)
-        {
-            Debug.Log($"Healing Potion amount : {healingPotionItem.amount}");
-        }
-    }
+
     public void AddPotion(int amount)
     {
         healingPotionItem.amount += amount;

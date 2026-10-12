@@ -9,6 +9,7 @@ public class Disassembler : MonoBehaviour
 
     [SerializeField] private BackpackInventory backpackInventory;
     [SerializeField] private BasicMaterialInventory basicMaterialInventory;
+    [SerializeField] private SaveSystem saveSystem;
 
     public bool SetItem(int slotIndex)
     {
@@ -22,6 +23,7 @@ public class Disassembler : MonoBehaviour
 
         currentItem = item;
         OnCurrentItemChanged?.Invoke();
+        saveSystem.SaveHome();
         return true;
     }
     public void  TakeOutItem()
@@ -32,6 +34,7 @@ public class Disassembler : MonoBehaviour
         backpackInventory.Add(currentItem);
         currentItem = null;
         OnCurrentItemChanged?.Invoke();
+        saveSystem.SaveHome();
     }
     public void DisassembleItem()
     {
@@ -82,6 +85,7 @@ public class Disassembler : MonoBehaviour
 
         currentItem = null;
         OnCurrentItemChanged?.Invoke();
+        saveSystem.SaveHome();
     }
     public void NotifyCurrentItemChanged()
     {
