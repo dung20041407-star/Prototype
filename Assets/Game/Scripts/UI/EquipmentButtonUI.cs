@@ -22,6 +22,18 @@ public class EquipmentButtonUI : MonoBehaviour
             return;
         }
 
+        Open();
+    }
+
+    public void Close()
+    {
+        isPanelOpen = false;
+
+        backpackPanel.SetActive(false);
+        equipmentInventoryPanel.SetActive(false);
+    }
+    public void Open()
+    {
         avatarButtonUI.Close();
         advancedMaterialButtonUI.Close();
         craftingPanelButtonUI.Close();
@@ -32,13 +44,5 @@ public class EquipmentButtonUI : MonoBehaviour
 
         backpackPanel.SetActive(true);
         equipmentInventoryPanel.SetActive(true);
-    }
-
-    public void Close()
-    {
-        isPanelOpen = false;
-
-        backpackPanel.SetActive(false);
-        equipmentInventoryPanel.SetActive(false);
     }
 }

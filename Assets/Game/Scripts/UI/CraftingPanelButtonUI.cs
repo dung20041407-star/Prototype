@@ -61,13 +61,7 @@ public class CraftingPanelButtonUI : MonoBehaviour
     {
         if (CraftingPanel.activeSelf == false)
         {
-            backpackUI.SetMode(BackpackMode.None);
-            advancedMaterialButtonUI.Close();
-            equipmentButtonUI.Close();
-            avatarButtonUI.Close();
-
-            CraftingPanel.SetActive(true);
-            ToggleEquipmentCraftingButtonPanel();
+            Open();
         }
         else
         {
@@ -79,5 +73,15 @@ public class CraftingPanelButtonUI : MonoBehaviour
         craftingSystem.ClearSelectedRecipe();
         CraftingPanel.SetActive(false);
         backpackPanel.SetActive(false);
+    }
+    public void Open()
+    {
+        backpackUI.SetMode(BackpackMode.None);
+        advancedMaterialButtonUI.Close();
+        equipmentButtonUI.Close();
+        avatarButtonUI.Close();
+
+        CraftingPanel.SetActive(true);
+        ToggleEquipmentCraftingButtonPanel();
     }
 }

@@ -166,5 +166,6 @@ public class PlayerStats : MonoBehaviour
         currentHp = Mathf.Clamp(currentHp, 0, maxHp);
 
         OnHPChanged?.Invoke();
+        saveSystem.SaveHome();
     }
 }

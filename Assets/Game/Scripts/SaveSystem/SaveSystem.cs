@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class SaveSystem : MonoBehaviour
 {
+    public static SaveSystem Instance { get; private set; }
     private string homeSavePath;
     [SerializeField] private LevelSystem levelSystem;
     [SerializeField] private PlayerStats playerStats;
@@ -23,6 +24,15 @@ public class SaveSystem : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
         homeSavePath = Path.Combine(
             Application.persistentDataPath,
             "home_save.json"
