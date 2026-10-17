@@ -6,8 +6,7 @@ using UnityEngine.InputSystem;
 public class BasicMaterialInventory : MonoBehaviour
 {
     [SerializeField] SaveSystem saveSystem;
-    [Header("Use arrow keys to add materials")]
-    [Header("Add Amount")]
+
     [SerializeField] private int addAmount = 1;
 
     public event Action OnInventoryChanged;
@@ -21,21 +20,6 @@ public class BasicMaterialInventory : MonoBehaviour
         materials.Add(BasicMaterialType.ProteinFiber, 0);
         materials.Add(BasicMaterialType.SoftTissue, 0);
         materials.Add(BasicMaterialType.Hemolymph, 0);
-    }
-
-    private void Update()
-    {
-            if (Keyboard.current.upArrowKey.wasPressedThisFrame)
-                AddMaterial(BasicMaterialType.ChitinFragment, addAmount);
-
-            if (Keyboard.current.rightArrowKey.wasPressedThisFrame)
-                AddMaterial(BasicMaterialType.SoftTissue, addAmount);
-
-            if (Keyboard.current.downArrowKey.wasPressedThisFrame)
-                AddMaterial(BasicMaterialType.ProteinFiber, addAmount);
-
-            if (Keyboard.current.leftArrowKey.wasPressedThisFrame)
-                AddMaterial(BasicMaterialType.Hemolymph, addAmount);  
     }
 
     public void AddMaterial(BasicMaterialType materialType, int amount)
@@ -64,5 +48,21 @@ public class BasicMaterialInventory : MonoBehaviour
     {
         materials[materialType] = amount;
         OnInventoryChanged?.Invoke();
+    }
+    public void AddChitinFragment()
+    {
+        AddMaterial(BasicMaterialType.ChitinFragment, addAmount);
+    }
+    public void AddProteinFiber()
+    {
+        AddMaterial(BasicMaterialType.ProteinFiber, addAmount);
+    }
+    public void AddSoftTissue()
+    {
+        AddMaterial(BasicMaterialType.SoftTissue, addAmount);
+    }
+    public void AddHemoLymph()
+    {
+        AddMaterial(BasicMaterialType.Hemolymph, addAmount);
     }
 }

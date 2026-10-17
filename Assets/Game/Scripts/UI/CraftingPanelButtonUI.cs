@@ -14,6 +14,9 @@ public class CraftingPanelButtonUI : MonoBehaviour
     [SerializeField] private AdvancedMaterialButtonUI advancedMaterialButtonUI;
     [SerializeField] private EquipmentButtonUI equipmentButtonUI;
     [SerializeField] private AvatarButtonUI avatarButtonUI;
+
+    private bool isPanelOpen;
+    public bool IsPanelOpen => isPanelOpen;
     public void ToggleEquipmentCraftingButtonPanel()
     {
         craftingSystem.ClearSelectedRecipe();
@@ -59,7 +62,7 @@ public class CraftingPanelButtonUI : MonoBehaviour
     }
     public void ToggleSelf()
     {
-        if (CraftingPanel.activeSelf == false)
+        if (isPanelOpen == false)
         {
             Open();
         }
@@ -70,12 +73,14 @@ public class CraftingPanelButtonUI : MonoBehaviour
     }
     public void Close()
     {
+        isPanelOpen = false;
         craftingSystem.ClearSelectedRecipe();
         CraftingPanel.SetActive(false);
         backpackPanel.SetActive(false);
     }
     public void Open()
     {
+        isPanelOpen = true;
         backpackUI.SetMode(BackpackMode.None);
         advancedMaterialButtonUI.Close();
         equipmentButtonUI.Close();

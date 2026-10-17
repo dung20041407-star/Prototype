@@ -3,6 +3,7 @@ using UnityEngine;
 public class BasicMaterialPanelUI : MonoBehaviour
 {
     [SerializeField] private BasicMaterialInventory inventory;
+    [SerializeField] private GameObject basicMaterialPanel;
 
     [SerializeField] private BasicMaterialSO chitinFragment;
     [SerializeField] private BasicMaterialSO softTissue;
@@ -41,5 +42,13 @@ public class BasicMaterialPanelUI : MonoBehaviour
             hemolymph._icon,
             inventory.GetMaterialAmount(BasicMaterialType.Hemolymph)
         );
+    }
+    public void Close()
+    {
+        basicMaterialPanel.SetActive( false );
+    }
+    public void Open()
+    {
+        basicMaterialPanel.SetActive( true );
     }
 }

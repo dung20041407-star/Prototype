@@ -3,6 +3,7 @@ using UnityEngine;
 public class AdvancedMaterialButtonUI : MonoBehaviour
 {
     [SerializeField] private bool isPanelOpen;
+    public bool IsPanelOpen => isPanelOpen;
     [SerializeField] private GameObject backpackPanel;
     [SerializeField] private GameObject advancedMaterialInventoryPanel;
     [SerializeField] private AvatarButtonUI avatarButtonUI;

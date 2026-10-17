@@ -9,6 +9,7 @@ public class EquipmentButtonUI : MonoBehaviour
     [SerializeField] private AdvancedMaterialButtonUI advancedMaterialButtonUI;
 
     [SerializeField] private bool isPanelOpen;
+    public bool IsPanelOpen => isPanelOpen;
 
     [SerializeField] private BackpackUI backpackUI;
 
