@@ -6,15 +6,30 @@ public class Movement : MonoBehaviour
     [SerializeField] private TouchController touchController;
 
     [Header("Movement")]
+    [SerializeField] private bool isMoving;
+    public bool IsMoving => isMoving;
+    [SerializeField] private bool isMovingFast;
+    public bool IsMovingFast => isMovingFast;
+    [SerializeField] private float number = 30.0f;
     [SerializeField] private float speed = 1.0f;
     [SerializeField] private float vectorMagnitudeClamp = 200.0f;
 
+    [Header("Facing")]
+    [SerializeField] private bool isFacingRight = true;
+
     [Header("Dash")]
+    private float dashSpeed;
+    [SerializeField] private float dashTurnSpeed = 3f;
+
+    private Vector2 dashDirection;
+
     [SerializeField] private float dashMultiplier = 4.0f;
     [SerializeField] private float dashDuration = 0.15f;
     [SerializeField] private float dashCooldown = 0.8f;
 
     public bool IsDashing { get; private set; }
+    public bool IsFacingRight => isFacingRight;
+
     private float dashTimer;
     private float dashCooldownTimer;
 
@@ -22,7 +37,10 @@ public class Movement : MonoBehaviour
     {
         UpdateDash();
         HandleDashInput();
+        UpdateMovementState();
         Move();
+        UpdateFacingDirection();
+        FlipPlayer();
     }
 
     private void HandleDashInput()
@@ -32,13 +50,12 @@ public class Movement : MonoBehaviour
 
         if (!Keyboard.current.spaceKey.wasPressedThisFrame)
             return;
-
         TryDash();
     }
 
     public void TryDash()
     {
-        if (!touchController.IsMoving)
+        if (!isMovingFast)
             return;
 
         if (IsDashing)
@@ -56,7 +73,9 @@ public class Movement : MonoBehaviour
 
         dashTimer = dashDuration;
         dashCooldownTimer = dashCooldown;
-        Debug.Log("Start Dashing");
+
+        dashSpeed = CalculateMovementSpeed();
+        dashDirection = CalculateMovementVector();
     }
 
     private void UpdateDash()
@@ -78,7 +97,27 @@ public class Movement : MonoBehaviour
         {
             IsDashing = false;
             dashTimer = 0f;
-            Debug.Log("Stop dashing.");
+        }
+    }
+
+    private void UpdateFacingDirection()
+    {
+        Vector2 movementVector;
+
+        if (IsDashing)
+        {
+            movementVector = dashDirection;
+        }else
+        {
+            movementVector = CalculateMovementVector();
+        }
+
+        if (movementVector.x > 0f)
+        {
+            isFacingRight = true;
+        }else if (movementVector.x < 0f)
+        {
+            isFacingRight = false;
         }
     }
 
@@ -86,7 +125,6 @@ public class Movement : MonoBehaviour
     {
         if (!touchController.IsMoving)
             return Vector2.zero;
-
         return (touchController.CurrentTouchPosition - touchController.MovementStartPosition).normalized;
     }
 
@@ -95,17 +133,54 @@ public class Movement : MonoBehaviour
         if (!touchController.IsMoving)
             return 0f;
 
-        float vectorMagnitude = (touchController.CurrentTouchPosition - touchController.MovementStartPosition).magnitude;
+        float vectorMagnitude =(touchController.CurrentTouchPosition - touchController.MovementStartPosition).magnitude;
 
         if (vectorMagnitude > vectorMagnitudeClamp)
             vectorMagnitude = vectorMagnitudeClamp;
+
         return vectorMagnitude;
+    }
+    private float CalculateNormalizedMovementSpeed()
+    {
+        float magnitude = CalculateMovementSpeed();
+
+        return Mathf.InverseLerp(0f, vectorMagnitudeClamp, magnitude) * 100f;
     }
 
     private void Move()
     {
-        float currentDashMultiplier = IsDashing ? dashMultiplier : 1f;
+        Vector2 inputDirection = CalculateMovementVector();
+        Vector2 movementDirection;
+        float currentSpeed;
 
-        transform.Translate(CalculateMovementVector() * CalculateMovementSpeed() * currentDashMultiplier * Time.deltaTime * (speed / 60f));
+        if (IsDashing)
+        {
+            if (inputDirection != Vector2.zero)
+            {
+                dashDirection = Vector2.Lerp(dashDirection, inputDirection, dashTurnSpeed * Time.deltaTime).normalized;
+            }
+            movementDirection = dashDirection;
+            currentSpeed = dashSpeed * dashMultiplier;
+        }
+        else
+        {
+            movementDirection = inputDirection;
+            currentSpeed = CalculateMovementSpeed();
+        }
+
+        transform.Translate(movementDirection * currentSpeed * Time.deltaTime * (speed / 60f)
+        );
+    }
+    private void FlipPlayer()
+    {
+        float direction = isFacingRight ? 1f : -1f;
+
+        transform.localScale = new Vector3(direction, 1f, 1f);
+    }
+    private void UpdateMovementState()
+    {
+        isMoving = CalculateMovementSpeed() > 0f;
+
+        isMovingFast = CalculateNormalizedMovementSpeed() >= number;
     }
 }

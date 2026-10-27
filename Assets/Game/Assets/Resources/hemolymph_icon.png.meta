@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6547db6538b2c6841a52617837411886
+guid: 7737b446cf7d43a4da3a4e7504bfcbf3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6354317608163522010
-    second: proteinfiber_icon_0
+      213: 8255007335658591307
+    second: hemolymph_icon_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,17 +96,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: proteinfiber_icon_0
+      name: hemolymph_icon_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 7
-        width: 52
-        height: 52
+        x: 22
+        y: 10
+        width: 73
+        height: 44
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ad5b890b2321f2850800000000000000
-      internalID: 6354317608163522010
+      spriteID: b449c245f6daf8270800000000000000
+      internalID: 8255007335658591307
       vertices: []
       indices: 
       edges: []
@@ -125,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 027638b51ffec6a44892ba6ce51eb9b9
+    spriteID: 9f7911def66bce24584d848f54978731
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      proteinfiber_icon_0: 6354317608163522010
+      hemolymph_icon_0: 8255007335658591307
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

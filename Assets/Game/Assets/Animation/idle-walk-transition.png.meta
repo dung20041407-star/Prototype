@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 1db9865311ce2aa4384ee7e7d191f202
+guid: afdf0302757456e41a17fbf41cd343b0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6832290003862868737
-    second: softtissue_icon_0
+      213: 8657683329352560516
+    second: idle-walk-transition_0
+  - first:
+      213: -3932763454815322758
+    second: idle-walk-transition_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,27 +99,62 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: softtissue_icon_0
+      name: idle-walk-transition_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 6
-        width: 52
-        height: 52
+        x: 0
+        y: 0
+        width: 53
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 103d2ba3f8b21de50800000000000000
-      internalID: 6832290003862868737
+      spriteID: 48f61ef1e15462870800000000000000
+      internalID: 8657683329352560516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: idle-walk-transition_1
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 0
+        width: 53
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7d381a79740c69c0800000000000000
+      internalID: -3932763454815322758
       vertices: []
       indices: 
       edges: []
@@ -125,7 +163,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 2625848a8e515f04ead7f1ebcea66c90
+    spriteID: 340ac79a68df6f74688e7f64036ce5c9
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      softtissue_icon_0: 6832290003862868737
+      idle-walk-transition_0: 8657683329352560516
+      idle-walk-transition_1: -3932763454815322758
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
