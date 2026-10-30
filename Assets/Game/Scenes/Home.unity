@@ -6047,9 +6047,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e26fe4da9aab224c9d9a7aad792c661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 100
-  stabilityDamage: 100
-  damageInterval: 1
 --- !u!61 &745017854
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6084,7 +6081,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 1, y: 0}
+  m_Offset: {x: 1, y: 0.0069246143}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6094,7 +6091,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.5706732}
   m_EdgeRadius: 0
 --- !u!1 &764122581
 GameObject:
@@ -7770,6 +7767,50 @@ MonoBehaviour:
   repairedItemIcon: {fileID: 2134862943}
   durabilityText: {fileID: 1278507356}
   repairStorage: {fileID: 2102891725}
+--- !u!1 &919757957
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 919757958}
+  - component: {fileID: 919757959}
+  m_Layer: 0
+  m_Name: State Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &919757958
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919757957}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1122478066}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &919757959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919757957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 328f1a52514ae574fba5202181327669, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &926296228
 GameObject:
   m_ObjectHideFlags: 0
@@ -8959,6 +9000,7 @@ Transform:
   - {fileID: 1586310603}
   - {fileID: 1977358760}
   - {fileID: 745017851}
+  - {fileID: 919757958}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1122478067
@@ -8974,16 +9016,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   touchController: {fileID: 1122478071}
+  stateManager: {fileID: 919757959}
+  damageZone: {fileID: 745017853}
   isMoving: 0
   isMovingFast: 0
   number: 30
   speed: 1
   vectorMagnitudeClamp: 200
   isFacingRight: 1
-  dashTurnSpeed: 5
-  dashMultiplier: 1.5
-  dashDuration: 0.5
-  dashCooldown: 0.85
 --- !u!114 &1122478068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9036,6 +9076,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movement: {fileID: 1122478067}
+  stateManager: {fileID: 0}
   isMoving: 0
 --- !u!1 &1130728527
 GameObject:

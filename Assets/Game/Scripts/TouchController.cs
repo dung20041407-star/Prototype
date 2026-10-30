@@ -7,6 +7,7 @@ using UnityEngine.InputSystem.Controls;
 public class TouchController : MonoBehaviour
 {
     [SerializeField] private Movement movement;
+    [SerializeField] private StateManager stateManager;
 
     private int movementTouchId = -1;
 
@@ -124,7 +125,8 @@ public class TouchController : MonoBehaviour
 
     private void TriggerDash()
     {
-        movement.TryDash();
+        if (movement.IsMoving && movement.IsMovingFast)
+            movement.RequestDash();
     }
 
     private bool IsTouchBlocked(Vector2 position)
