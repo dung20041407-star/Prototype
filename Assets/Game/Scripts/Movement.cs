@@ -11,6 +11,7 @@ public class Movement : MonoBehaviour
     private RunState runState;
     private DashState dashState;
     private AttackState attackState;
+    private AttackState5 attackState5;
 
     public DashState DashState => dashState;
 
@@ -19,6 +20,7 @@ public class Movement : MonoBehaviour
     public void ToRun() => stateManager.ChangeState(runState);
     public void ToDash() => stateManager.ChangeState(dashState);
     public void ToAttack() => stateManager.ChangeState(attackState);
+    public void ToAttack5() => stateManager.ChangeState(attackState5);
 
     [SerializeField] private bool isMoving;
     public bool IsMoving => isMoving;
@@ -34,7 +36,11 @@ public class Movement : MonoBehaviour
     [SerializeField] private bool isFacingRight = true;
 
     [Header("Attack")]
-    public bool IsAttacking { get; private set; }
+    public bool IsAttacking1 => stateManager.CurrentState == attackState;
+
+    public bool IsAttacking5 => stateManager.CurrentState == attackState5;
+
+    public bool IsAttacking => IsAttacking1 || IsAttacking5;
 
     public bool IsDashing => stateManager.CurrentState == dashState;
     public bool IsFacingRight => isFacingRight;
@@ -55,6 +61,7 @@ public class Movement : MonoBehaviour
         runState = new RunState(this);
         dashState = new DashState(this);
         attackState = new AttackState(this);
+        attackState5 = new AttackState5(this);
 
         stateManager.ChangeState(idleState);
     }
@@ -162,10 +169,7 @@ public class Movement : MonoBehaviour
         isMoving = CalculateMovementSpeed() > 0f;
         isMovingFast = CalculateNormalizedMovementSpeed() >= number;
     }
-    public void SetAttacking(bool value)
-    {
-        IsAttacking = value;
-    }
+
     public void SetAttackAnimationFinished(bool value)
     {
         IsAttackAnimationFinished = value;

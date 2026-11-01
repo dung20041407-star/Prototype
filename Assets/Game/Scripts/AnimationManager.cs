@@ -9,7 +9,8 @@ public class AnimationManager : MonoBehaviour
     private static readonly int IsWalking = Animator.StringToHash("isWalking");
     private static readonly int IsRunning = Animator.StringToHash("isRunning");
     private static readonly int IsDashing = Animator.StringToHash("isDashing");
-    private static readonly int IsAttacking = Animator.StringToHash("isAttacking");
+    private static readonly int IsAttacking1 = Animator.StringToHash("isAttacking1");
+    private static readonly int IsAttacking5 = Animator.StringToHash("isAttacking5");
 
     private void Awake()
     {
@@ -54,7 +55,8 @@ public class AnimationManager : MonoBehaviour
 
     private void UpdateAttackAnimation()
     {
-        animator.SetBool(IsAttacking, movement.IsAttacking);
+        animator.SetBool(IsAttacking1, movement.IsAttacking1);
+        animator.SetBool(IsAttacking5, movement.IsAttacking5);
     }
 
     private void SetMovementAnimation(

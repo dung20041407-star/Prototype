@@ -11,8 +11,8 @@ public class AttackState : IState
 
     public void Enter()
     {
-        movement.SetAttacking(true);
         StartAttackCycle();
+        Debug.Log("Enter Attack1 State");
     }
 
     public void Execute()
@@ -22,8 +22,6 @@ public class AttackState : IState
 
         if (movement.IsMoving)
         {
-            movement.SetAttacking(false);
-
             if (movement.IsMovingFast)
                 movement.ToRun();
             else
@@ -34,11 +32,10 @@ public class AttackState : IState
 
         if (movement.damageZone.HasEnemy)
         {
-            StartAttackCycle();
+            movement.ToAttack5();
             return;
         }
 
-        movement.SetAttacking(false);
         movement.ToIdle();
     }
 
@@ -51,6 +48,6 @@ public class AttackState : IState
 
     public void Exit()
     {
-        movement.SetAttacking(false);
+        Debug.Log("Exit Attack1 State");
     }
 }
