@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public enum WeaponHandState
 {
-    None,
+    //None,
     Blunt,
     Sharp
 }

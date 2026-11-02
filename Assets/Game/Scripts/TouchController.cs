@@ -7,7 +7,6 @@ using UnityEngine.InputSystem.Controls;
 public class TouchController : MonoBehaviour
 {
     [SerializeField] private Movement movement;
-    [SerializeField] private StateManager stateManager;
 
     private int movementTouchId = -1;
 

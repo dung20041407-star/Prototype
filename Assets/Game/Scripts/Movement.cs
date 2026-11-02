@@ -4,6 +4,8 @@ public class Movement : MonoBehaviour
 {
     [SerializeField] private TouchController touchController;
     [SerializeField] private StateManager stateManager;
+    [SerializeField] private EquipmentManager equipmentManager;
+    public EquipmentManager EquipmentManager => equipmentManager;
     public DamageZone damageZone;
 
     private IdleState idleState;
@@ -11,6 +13,9 @@ public class Movement : MonoBehaviour
     private RunState runState;
     private DashState dashState;
     private AttackState attackState;
+    private AttackState2 attackState2;
+    private AttackState3 attackState3;
+    private AttackState4 attackState4;
     private AttackState5 attackState5;
 
     public DashState DashState => dashState;
@@ -20,6 +25,9 @@ public class Movement : MonoBehaviour
     public void ToRun() => stateManager.ChangeState(runState);
     public void ToDash() => stateManager.ChangeState(dashState);
     public void ToAttack() => stateManager.ChangeState(attackState);
+    public void ToAttack2() => stateManager.ChangeState(attackState2);
+    public void ToAttack3() => stateManager.ChangeState(attackState3);
+    public void ToAttack4() => stateManager.ChangeState(attackState4);
     public void ToAttack5() => stateManager.ChangeState(attackState5);
 
     [SerializeField] private bool isMoving;
@@ -37,15 +45,19 @@ public class Movement : MonoBehaviour
 
     [Header("Attack")]
     public bool IsAttacking1 => stateManager.CurrentState == attackState;
+    public bool IsAttacking2 => stateManager.CurrentState == attackState2;
 
+    public bool IsAttacking3 => stateManager.CurrentState == attackState3;
+    public bool IsAttacking4 => stateManager.CurrentState == attackState4;
     public bool IsAttacking5 => stateManager.CurrentState == attackState5;
 
-    public bool IsAttacking => IsAttacking1 || IsAttacking5;
+    public bool IsAttacking => IsAttacking1 || IsAttacking5 || IsAttacking2 || IsAttacking3 || IsAttacking4;
 
     public bool IsDashing => stateManager.CurrentState == dashState;
     public bool IsFacingRight => isFacingRight;
 
     public bool IsAttackAnimationFinished { get; private set; }
+    public bool IsAttackPhaseFinished { get; private set; }
 
     public Vector2 DashDirection => dashState.Direction;
 
@@ -62,6 +74,9 @@ public class Movement : MonoBehaviour
         dashState = new DashState(this);
         attackState = new AttackState(this);
         attackState5 = new AttackState5(this);
+        attackState4 = new AttackState4(this);
+        attackState3 = new AttackState3(this);
+        attackState2 = new AttackState2(this);
 
         stateManager.ChangeState(idleState);
     }
@@ -173,5 +188,9 @@ public class Movement : MonoBehaviour
     public void SetAttackAnimationFinished(bool value)
     {
         IsAttackAnimationFinished = value;
+    }
+    public void SetAttackPhaseFinished(bool value)
+    {
+        IsAttackPhaseFinished = value;
     }
 }

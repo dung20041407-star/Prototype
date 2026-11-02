@@ -27,7 +27,17 @@ public class IdleState : IState
 
         if (movement.damageZone.HasEnemy)
         {
-            movement.ToAttack();
+            switch (movement.EquipmentManager.currentWeaponState)
+            {
+                case WeaponHandState.Blunt:
+                    movement.ToAttack();
+                    break;
+
+                case WeaponHandState.Sharp:
+                    movement.ToAttack2();
+                    break;
+            }
+
             return;
         }
     }

@@ -10,6 +10,9 @@ public class AnimationManager : MonoBehaviour
     private static readonly int IsRunning = Animator.StringToHash("isRunning");
     private static readonly int IsDashing = Animator.StringToHash("isDashing");
     private static readonly int IsAttacking1 = Animator.StringToHash("isAttacking1");
+    private static readonly int IsAttacking2 = Animator.StringToHash("isAttacking2");
+    private static readonly int IsAttacking3 = Animator.StringToHash("isAttacking3");
+    private static readonly int IsAttacking4 = Animator.StringToHash("isAttacking4");
     private static readonly int IsAttacking5 = Animator.StringToHash("isAttacking5");
 
     private void Awake()
@@ -56,6 +59,9 @@ public class AnimationManager : MonoBehaviour
     private void UpdateAttackAnimation()
     {
         animator.SetBool(IsAttacking1, movement.IsAttacking1);
+        animator.SetBool(IsAttacking2, movement.IsAttacking2);
+        animator.SetBool(IsAttacking3, movement.IsAttacking3);
+        animator.SetBool(IsAttacking4, movement.IsAttacking4);
         animator.SetBool(IsAttacking5, movement.IsAttacking5);
     }
 
@@ -73,5 +79,9 @@ public class AnimationManager : MonoBehaviour
     public void OnAttackAnimationFinished()
     {
         movement.SetAttackAnimationFinished(true);
+    }
+    public void OnAttackPhaseFinished()
+    {
+        movement.SetAttackPhaseFinished(true);
     }
 }
