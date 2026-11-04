@@ -19,7 +19,7 @@ public class HPBarUI : MonoBehaviour
     private void OnDestroy() { playerStats.OnHPChanged -= UpdateHP; }
     public void UpdateHP()
     {
-        float targetHP = (float)playerStats.currentHp/playerStats.maxHp;
+        float targetHP = (float)playerStats.CurrentHp/playerStats.MaxHp;
         if (hpCoroutine != null)
         {
             StopCoroutine(hpCoroutine);

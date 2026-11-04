@@ -40,10 +40,6 @@ public class EnemyHealthAndStability : MonoBehaviour
 
     private void Update()
     {
-        if (Keyboard.current.aKey.wasPressedThisFrame)
-        {
-            TakeDamage(100, 100);
-        }
     }
 
     public void TakeDamage(int damage, int stabilityDamage)

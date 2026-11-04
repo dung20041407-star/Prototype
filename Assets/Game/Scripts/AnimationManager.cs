@@ -4,6 +4,8 @@ public class AnimationManager : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     [SerializeField] private Movement movement;
+    [SerializeField] private AttackHitbox attackHitbox;
+    [SerializeField] private PlayerStats playerStats;
 
     private static readonly int IsIdle = Animator.StringToHash("isIdle");
     private static readonly int IsWalking = Animator.StringToHash("isWalking");
@@ -83,5 +85,14 @@ public class AnimationManager : MonoBehaviour
     public void OnAttackPhaseFinished()
     {
         movement.SetAttackPhaseFinished(true);
+    }
+    public void EnableAttackHitbox()
+    {
+        attackHitbox.StartAttack(Mathf.RoundToInt(playerStats.HpDamage * movement.CurrentDamageScale), Mathf.RoundToInt(playerStats.StabilityDamage * movement.CurrentDamageScale));
+    }
+
+    public void DisableAttackHitbox()
+    {
+        attackHitbox.EndAttack();
     }
 }

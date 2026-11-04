@@ -14,14 +14,14 @@ public class PlayerStats : MonoBehaviour
     float baseAttackSpeed = 1;
     float baseMoveSpeed = 1;
 
-    public int maxHp;
-    public int hpDamage;
-    public int stabilityDamage;
-    public int defense;
-    public float attackSpeed;
-    public float moveSpeed;
+    int maxHp;
+    int hpDamage;
+    int stabilityDamage;
+    int defense;
+    float attackSpeed;
+    float moveSpeed;
 
-    public int currentHp;
+    int currentHp;
 
     public int BaseHp => baseHp;
     public int BaseHpDamage => baseHpDamage;
@@ -29,6 +29,13 @@ public class PlayerStats : MonoBehaviour
     public int BaseDefense => baseDefense;
     public float BaseAttackSpeed => baseAttackSpeed;
     public float BaseMoveSpeed => baseMoveSpeed;
+
+    public int HpDamage => hpDamage;
+    public int StabilityDamage => stabilityDamage;
+    public int MaxHp => maxHp;
+    public int Defense => defense;
+    public float AttackSpeed => attackSpeed;
+    public float MoveSpeed => moveSpeed;
 
     public int CurrentHp => currentHp;
     public float CurrentHpRatio =>
@@ -79,6 +86,7 @@ public class PlayerStats : MonoBehaviour
         {
             ApplyEquipment(item);
         }
+        ApplyWeaponStateBonus();
     }
     void ResetStatsToBaseStats()
     {
@@ -167,5 +175,16 @@ public class PlayerStats : MonoBehaviour
 
         OnHPChanged?.Invoke();
         saveSystem.SaveHome();
+    }
+    void ApplyWeaponStateBonus()
+    {
+        if (equipmentManager.currentWeaponState == WeaponHandState.Blunt)
+        {
+            stabilityDamage = Mathf.RoundToInt(stabilityDamage * 1.2f);
+        }
+        else if (equipmentManager.currentWeaponState == WeaponHandState.Sharp)
+        {
+            hpDamage = Mathf.RoundToInt(hpDamage * 1.2f);
+        }
     }
 }

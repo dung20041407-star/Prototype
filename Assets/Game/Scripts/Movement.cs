@@ -63,6 +63,8 @@ public class Movement : MonoBehaviour
 
     public bool DashRequested { get; private set; }
 
+    public float CurrentDamageScale { get; private set; } = 1f;
+
     private void Awake()
     {
         if (stateManager == null)
@@ -192,5 +194,13 @@ public class Movement : MonoBehaviour
     public void SetAttackPhaseFinished(bool value)
     {
         IsAttackPhaseFinished = value;
+    }
+    public void SetDamageScale(float scale)
+    {
+        CurrentDamageScale = scale;
+    }
+    public void ResetDamageScale()
+    {
+        CurrentDamageScale = 1f;
     }
 }

@@ -12,7 +12,7 @@ public class AttackState4 : IState
     public void Enter()
     {
         StartAttackCycle();
-        Debug.Log("Enter Attack4 State");
+        movement.SetDamageScale(0.2f);
     }
 
     public void Execute()
@@ -21,7 +21,11 @@ public class AttackState4 : IState
         {
             if (movement.damageZone.HasEnemy && !movement.IsMoving)
             {
-                movement.ToAttack2();
+                if (movement.EquipmentManager.currentWeaponState == WeaponHandState.Blunt)
+                    movement.ToAttack();
+                else
+                    movement.ToAttack2();
+
                 return;
             }
         }
@@ -52,6 +56,6 @@ public class AttackState4 : IState
 
     public void Exit()
     {
-        Debug.Log("Exit Attack4 State");
+        movement.ResetDamageScale();
     }
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public enum WeaponHandState
 {
-    //None,
     Blunt,
     Sharp
 }
@@ -44,7 +43,6 @@ public class EquipmentManager : MonoBehaviour
         bootsSlot.type = EquipmentType.Boots;
         slots.Add(bootsSlot);
     }
-
     public void EquipItem(EquipmentItem item)
     {
         if (item == null)
@@ -125,5 +123,14 @@ public class EquipmentManager : MonoBehaviour
             return null;
 
         return slots[equipmentSlotIndex].equippedItem;
+    }
+    public void SwitchWeaponState()
+    {
+        currentWeaponState = currentWeaponState == WeaponHandState.Blunt ? WeaponHandState.Sharp : WeaponHandState.Blunt;
+
+        Debug.Log($"Weapon state changed to: {currentWeaponState}");
+
+        OnEquipmentChanged?.Invoke();
+        saveSystem.SaveHome();
     }
 }

@@ -46,10 +46,6 @@ public class SaveSystem : MonoBehaviour
 
     private void Update()
     {
-        if (Keyboard.current.sKey.wasPressedThisFrame)
-        {
-            SaveHome();
-        }
     }
 
     public void SaveHome()

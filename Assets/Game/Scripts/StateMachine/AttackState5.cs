@@ -12,7 +12,7 @@ public class AttackState5 : IState
     public void Enter()
     {
         StartAttackCycle();
-        Debug.Log("Enter Attack5 State");
+        movement.SetDamageScale(0.6f);
     }
 
     public void Execute()
@@ -22,7 +22,6 @@ public class AttackState5 : IState
 
         if (movement.IsMoving)
         {
-
             if (movement.IsMovingFast)
                 movement.ToRun();
             else
@@ -33,7 +32,11 @@ public class AttackState5 : IState
 
         if (movement.damageZone.HasEnemy)
         {
-            movement.ToAttack();
+            if (movement.EquipmentManager.currentWeaponState == WeaponHandState.Sharp)
+                movement.ToAttack2();
+            else
+                movement.ToAttack();
+
             return;
         }
 
@@ -49,6 +52,6 @@ public class AttackState5 : IState
 
     public void Exit()
     {
-        Debug.Log("Exit Attack5 State");
+        movement.ResetDamageScale();
     }
 }

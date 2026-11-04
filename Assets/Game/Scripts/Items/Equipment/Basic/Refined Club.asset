@@ -27,7 +27,7 @@ MonoBehaviour:
   maxDurability: 1000
   HpPercent: 0
   DamagePercent: 28
-  StabilityDamagePercent: 84
+  StabilityDamagePercent: 42
   DefensePercent: 0
   AttackSpeedPercent: 0
   MoveSpeedPercent: 0

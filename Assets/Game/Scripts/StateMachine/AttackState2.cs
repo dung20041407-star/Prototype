@@ -12,7 +12,7 @@ public class AttackState2 : IState
     public void Enter()
     {
         StartAttackCycle();
-        Debug.Log("Enter Attack2 State");
+        movement.SetDamageScale(0.2f);
     }
 
     public void Execute()
@@ -52,6 +52,6 @@ public class AttackState2 : IState
 
     public void Exit()
     {
-        Debug.Log("Exit Attack2 State");
+        movement.ResetDamageScale();
     }
 }

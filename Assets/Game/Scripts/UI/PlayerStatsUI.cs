@@ -17,8 +17,8 @@ public class PlayerStatsUI : MonoBehaviour
     }
     private void UpdateStats()
     {
-        HP.text = $"HP: {playerStats.currentHp}";
-        damage.text = $"ATK: {playerStats.hpDamage}";
-        defense.text = $"DEF: {playerStats.defense}";
+        HP.text = $"HP: {playerStats.CurrentHp}";
+        damage.text = $"ATK: {playerStats.HpDamage}";
+        defense.text = $"DEF: {playerStats.Defense}";
     }
 }
