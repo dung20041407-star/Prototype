@@ -65,8 +65,11 @@ public class Movement : MonoBehaviour
 
     public float CurrentDamageScale { get; private set; } = 1f;
 
+    private Rigidbody2D rb;
+
     private void Awake()
     {
+        rb = GetComponent<Rigidbody2D>();
         if (stateManager == null)
             stateManager = GetComponent<StateManager>();
 
@@ -159,7 +162,10 @@ public class Movement : MonoBehaviour
     public void Move(float movementSpeed)
     {
         if (IsAttacking)
+        {
+            StopMovement();
             return;
+        }
 
         MoveInDirection(CalculateMovementVector(), movementSpeed);
     }
@@ -167,13 +173,18 @@ public class Movement : MonoBehaviour
     public void MoveInDirection(Vector2 direction, float movementSpeed)
     {
         if (IsAttacking)
+        {
+            StopMovement();
             return;
+        }
 
-        transform.Translate(
-            direction * movementSpeed * Time.deltaTime * (speed / 60f)
-        );
+        rb.linearVelocity =
+            direction * movementSpeed * (speed / 60f);
     }
-
+    public void StopMovement()
+    {
+        rb.linearVelocity = Vector2.zero;
+    }
     private void FlipPlayer()
     {
         float direction = isFacingRight ? 1f : -1f;

@@ -11,6 +11,7 @@ public class IdleState : IState
     public void Enter()
     {
         Debug.Log("Enter Idle State");
+        movement.StopMovement();
     }
 
     public void Execute()
